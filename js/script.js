@@ -134,6 +134,15 @@ setToDisplay = function () {
       return parseFloat(degree)
     }
   }
+   function factorial(n) {
+  if (n === 0) {
+    return 1;
+  } else if (n < 0) {
+    return;
+  } else {
+    return n * factorial(n - 1);
+  }
+}
 
   return expression
     .replace(/sin\(([^)]+)\)/g, function (match, p1) {
@@ -154,11 +163,14 @@ setToDisplay = function () {
     .replace(/Inv\(([^)]+)\)/g, function (match, p1) {
       return "1/(" + p1 + ")";
     })
-    .replace(/Exp\(([^)]+)\)/g, function (match, p1) {
+    .replace(/EXP\(([^)]+)\)/g, function (match, p1) {
       return "Math.exp(" + p1 + ")";
     })
     .replace(/√\(([^)]+)\)/g, function (match, p1) {
       return "Math.sqrt(" + p1 + ")";
+    })
+     .replace(/x!\(([^)]+)\)/g, function (match, p1) {
+      return "factorial(p1)";
     })
     .replace(/π/g, Math.PI)
     .replace(/e/g, Math.E);
