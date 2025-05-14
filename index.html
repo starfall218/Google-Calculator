@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Google Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <main>
+    <div class="box">
+      <div class="top-box">
+        <div class="history-box">
+          <div class="history-icon">
+            <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 3a9 9 0 0 0-9 9H1l3.89 3.89.07.14L9 12H6c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42A8.954 8.954 0 0 0 13 21a9 9 0 0 0 0-18zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08V8H12z"></path></svg>
+          </div>
+          <div class="dropdown"></div>
+         <div class="lefthistory">
+          <span class="history-text">Ans = </span>
+         </div>
+        </div>
+        <p class="output-content"></p></div>
+      <div class="middle-box">
+        <!-- The left side of the claculalower box. -->
+        <div class="left">
+          <!-- The Rad and Deg button -->
+          <div class="lightblue-long">
+            <span class="rad" data-name="mode" data-value="rad">Rad</span>
+            <span class="bluestick">|</span>
+            <span class="special" data-name="mode" data-value="deg">Deg</span>
+          </div>
+        
+          <div class="lightblue"><span class="special" data-name="function" data-value="factorial">x!</span></div>
+          <div class="lightblue"><span class="special" data-name="toggle" data-value="inv">Inv</span></div>
+          <div class="lightblue"><span class="special" data-name="function" data-value="sin">sin</span></div>
+          <div class="lightblue"><span class="special" data-name="function" data-value="ln">ln</span></div>
+          <div class="lightblue"><span class="special" data-name="constant" data-value="pi">&#960;</span></div>
+          <div class="lightblue"><span class="special" data-name="function" data-value="cos">cos</span></div>
+          <div class="lightblue"><span class="special" data-name="function" data-value="log">log</span></div>
+          <div class="lightblue"><span class="special" data-name="constant" data-value="e">e</span></div>
+          <div class="lightblue"><span class="special" data-name="function" data-value="tan">tan</span></div>
+          <div class="lightblue"><span class="special" data-name="function" data-value="sqrt">√</span></div>
+          <div class="lightblue"><span class="special" data-name="memory" data-value="ans">Ans</span></div>
+          <div class="lightblue"><span class="special" data-name="function" data-value="exp">EXP</span></div>
+          <div class="lightblue"><span class="special" data-name="operator" data-value="power">x^y</span></div>
+        
+          <div class="deepblue"><span class="assign" data-name="equals" data-value="=">=</span></div>
+        </div>
+        
+        
+        <!-- Right side of the lower box. -->
+        <div class="right">
+          <!-- Parentheses -->
+          <div class="lightblue"><span class="special" data-name="parenthesis" data-value="(">(</span></div>
+          <div class="lightblue"><span class="special" data-name="parenthesis" data-value=")">)</span></div>
+        
+          <!-- Percent -->
+          <div class="lightblue"><span class="operator" data-name="operator" data-value="%">%</span></div>
+        
+          <!-- Clear (AC) -->
+          <div class="lightblue"><span class="clear" data-name="clear" data-value="AC">AC</span></div>
+        
+          <!-- Row 2 -->
+          <div class="lightgray"><span class="number" data-name="number" data-value="7">7</span></div>
+          <div class="lightgray"><span class="number" data-name="number" data-value="8">8</span></div>
+          <div class="lightgray"><span class="number" data-name="number" data-value="9">9</span></div>
+          <div class="lightblue"><span class="operator" data-name="operator" data-value="/">÷</span></div>
+        
+          <!-- Row 3 -->
+          <div class="lightgray"><span class="number" data-name="number" data-value="4">4</span></div>
+          <div class="lightgray"><span class="number" data-name="number" data-value="5">5</span></div>
+          <div class="lightgray"><span class="number" data-name="number" data-value="6">6</span></div>
+          <div class="lightblue"><span class="operator" data-name="operator" data-value="*">x</span></div>
+        
+          <!-- Row 4 -->
+          <div class="lightgray"><span class="number" data-name="number" data-value="1">1</span></div>
+          <div class="lightgray"><span class="number" data-name="number" data-value="2">2</span></div>
+          <div class="lightgray"><span class="number" data-name="number" data-value="3">3</span></div>
+          <div class="lightblue"><span class="operator" data-name="operator" data-value="-">-</span></div>
+        
+          <!-- Row 5 -->
+          <div class="lightgray"><span class="number" data-name="number" data-value="0">0</span></div>
+          <div class="lightgray"><span class="number" data-name="number" data-value=".">.</span></div>
+          <div class="deepblue"><span class="assign" data-name="equals" data-value="=">=</span></div>
+          <div class="lightblue"><span class="operator" data-name="operator" data-value="+">+</span></div>
+        </div>        
+        
+      </div>
+
+      <div class="bottom-box">
+        <div class="lightblue-long">
+          <span class="one-two-three">123</span>
+          <span class="fx">Fx</span>
+        </div>
+        <!-- This button replaces the 123 and fx button on a large screen. -->
+        <div class="math-solver">
+          <span>Maths Solver</span>
+          <div class="sideicon">
+            <svg focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"></path></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="./js/script.js"></script>
+</body>
+</html>
