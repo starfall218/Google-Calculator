@@ -53,6 +53,7 @@ const allEqual = document.querySelectorAll('[data-name="equals"]');
 const clearBtn = document.querySelector('.clear');
 console.log(allEqual);
 const historyText = document.querySelector('.history-text');
+const toggle = document.querySelector('[data-name="toggle"]');
 
 // This is for tracking and saving previous full equations.
 class theCalculator{
@@ -134,16 +135,16 @@ setToDisplay = function () {
       return parseFloat(degree)
     }
   }
-   function factorial(n) {
-  if (n === 0) {
-    return 1;
-  } else if (n < 0) {
-    return;
-  } else {
-    return n * factorial(n - 1);
-  }
-}
 
+  function factorial(n) {
+    if (n === 0) {
+      return 1;
+    } else if (n < 0) {
+      return;
+    } else {
+      return n * factorial(n - 1);
+    }
+  }
   return expression
     .replace(/sin\(([^)]+)\)/g, function (match, p1) {
       return "Math.sin(" + toRadians(p1) + ")";
@@ -166,17 +167,48 @@ setToDisplay = function () {
     .replace(/EXP\(([^)]+)\)/g, function (match, p1) {
       return "Math.exp(" + p1 + ")";
     })
+    .replace(/x!\(([^)]+)\)/g, function (match, p1) {
+      return "factorial(p1)";
+    })
     .replace(/√\(([^)]+)\)/g, function (match, p1) {
       return "Math.sqrt(" + p1 + ")";
     })
-     .replace(/x!\(([^)]+)\)/g, function (match, p1) {
-      return "factorial(p1)";
+    .replace(/cos-1\(([^)]+)\)/g, function (match, p1) {
+      return (Math.acos(parseFloat(p1)) * 180 / Math.PI).toString();
     })
+    .replace(/sin-1\(([^)]+)\)/g, function (match, p1) {
+      return (Math.asin(parseFloat(p1)) * 180 / Math.PI).toString();
+    })
+    .replace(/tan-1\(([^)]+)\)/g, function (match, p1) {
+      return (Math.atan(parseFloat(p1)) * 180 / Math.PI).toString();
+    })
+    
+    
     .replace(/π/g, Math.PI)
+    .replace(/2x\(([^)]+)\)/g, function (match, p1) {
+      return `Math.pow(${p1}, 2)`;
+    })
+      
     .replace(/e/g, Math.E);
 };
+inverse(){
+  const sin = document.querySelector('[data-value="sin"]');
+  
+  const cos = document.querySelector('[data-value="cos"]');
+  const tan = document.querySelector('[data-value="tan"]');
+  if (sin.textContent === 'sin-1') {
+    sin.textContent = 'sin';
+    tan.textContent = 'tan';
+    cos.textContent = 'cos';
+  }else if (sin.textContent === 'sin') {
+    sin.textContent = 'sin-1';
+    tan.textContent = 'tan-1';
+    cos.textContent = 'cos-1';
+  }
 
-applyFunction = function (funcName) {
+}
+
+applyFunction(funcName) {
   if (this.currVal === '') {
     return;
   }
@@ -186,7 +218,7 @@ applyFunction = function (funcName) {
   this.setToDisplay();
 };
 
- applyConstant = function (constant) {
+ applyConstant(constant) {
   let value;
   if (constant === 'π') {
     value = Math.PI.toString();
@@ -242,8 +274,11 @@ modes.forEach(function(mod){
     this.textContent = calculator.anglemethod()
   })
 });
+toggle.addEventListener('click', function(){
+  calculator.inverse();
+})
 document.addEventListener('keydown', function (event) {
-  var key = event.key;
+  let key = event.key;
 
   if (!isNaN(key) || key === '.') {
     calculator.addValues(key);
@@ -261,4 +296,4 @@ document.addEventListener('keydown', function (event) {
 });
 clearBtn.addEventListener('click', function(){
   calculator.clear();
-})
+});
